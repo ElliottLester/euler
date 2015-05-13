@@ -10,6 +10,7 @@ pub mod q3;
 pub mod q4;
 pub mod q5;
 pub mod q6;
+pub mod q7;
 
 #[cfg(not(test))]
 fn main() {
@@ -19,10 +20,10 @@ fn main() {
     println!("Q4: {:?}" ,q4::soln());
     println!("Q5: {:?}" ,q5::soln());
     println!("Q6: {:?}" ,q6::soln());
+    println!("Q7: {:?}" ,q7::soln(10001));
 }
 
 #[cfg(test)]
-use test::Bencher;
 #[test]
 pub fn q1() {assert!(q1::soln() == 233168)}
 #[test]
@@ -35,8 +36,11 @@ pub fn q4() {assert!(q4::soln() == (906609,906609));}
 pub fn q5() {assert!(q5::soln() == 232792560);}
 #[test]
 pub fn q6() {assert!(q6::soln() == 25164150);}
-
+#[test]
+pub fn q7() {assert!(q7::soln(10001) == 104743);}
+/*
 #[bench]
+use test::Bencher;
 fn loop_q3(b: &mut Bencher) {
     b.iter(|| {
         test::black_box(
@@ -67,7 +71,7 @@ fn loop_q4(b: &mut Bencher) {
         )
     })
 }
-/*
+
 #[bench]
 fn iter_q4(b: &mut Bencher) {
     b.iter(|| {
