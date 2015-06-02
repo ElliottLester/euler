@@ -11,6 +11,7 @@ pub mod q4;
 pub mod q5;
 pub mod q6;
 pub mod q7;
+pub mod q8;
 
 #[cfg(not(test))]
 fn main() {
@@ -21,6 +22,7 @@ fn main() {
     println!("Q5: {:?}" ,q5::soln());
     println!("Q6: {:?}" ,q6::soln());
     println!("Q7: {:?}" ,q7::soln(10001));
+    println!("Q8: {:?}" ,q8::soln())
 }
 
 #[cfg(test)]
@@ -38,6 +40,8 @@ pub fn q5() {assert!(q5::soln() == 232792560);}
 pub fn q6() {assert!(q6::soln() == 25164150);}
 #[test]
 pub fn q7() {assert!(q7::soln(10001) == 104743);}
+#[test]
+pub fn q8() {assert!(q8::soln() == 23514624000);}
 /*
 #[bench]
 use test::Bencher;
