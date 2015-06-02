@@ -11,3 +11,6 @@ pub fn soln() -> usize{
     //println!("diffrence {}",sqos - sosq);
     (sqos - sosq) as usize
 }
+#[cfg(test)]
+#[test]
+pub fn q6() {assert!(soln() == 25164150);}

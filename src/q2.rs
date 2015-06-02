@@ -12,3 +12,7 @@ pub fn soln() -> usize {
     }
     j
 }
+
+#[cfg(test)]
+#[test]
+pub fn q2() {assert!(soln() == 4613732)}

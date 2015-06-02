@@ -36,6 +36,13 @@ pub fn loop_soln() -> usize {
     high
 }
 
-pub fn soln() -> (usize,usize) {
-    (iter_soln(),loop_soln())
+pub fn soln() -> usize {
+    let a = iter_soln();
+    let b = loop_soln();
+    assert!(a == b);
+    a
 }
+
+#[cfg(test)]
+#[test]
+pub fn q4() {assert!(soln() == 906609);}

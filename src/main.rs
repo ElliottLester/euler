@@ -1,88 +1,56 @@
 #![feature(core)]
 #![feature(test)]
 #![feature(convert)]
+#![feature(collections)]
+#![feature(step_by)]
 
 extern crate test;
 
-pub mod q1;
-pub mod q2;
-pub mod q3;
-pub mod q4;
-pub mod q5;
-pub mod q6;
-pub mod q7;
-pub mod q8;
+mod utils;
+
+mod q1;
+mod q2;
+mod q3;
+mod q4;
+mod q5;
+mod q6;
+mod q7;
+mod q8;
+mod q9;
+mod q10;
+
+
+#[cfg(not(test))]
+use std::env;
 
 #[cfg(not(test))]
 fn main() {
-    println!("Q1: {:?}" ,q1::soln());
-    println!("Q2: {:?}" ,q2::soln());
-    println!("Q3: {:?}" ,q3::soln(600851475143));
-    println!("Q4: {:?}" ,q4::soln());
-    println!("Q5: {:?}" ,q5::soln());
-    println!("Q6: {:?}" ,q6::soln());
-    println!("Q7: {:?}" ,q7::soln(10001));
-    println!("Q8: {:?}" ,q8::soln())
+    let arg = env::args().nth(1);
+    let target = match arg {
+        Some(x) => vec!(x.parse::<usize>().ok().expect("Please enter a number!")),
+        None => (1..11).collect(),
+    };
+    
+    for x in target {
+        print!("Q{} => {}\n",x,run(x))
+    }
+
 }
 
-#[cfg(test)]
-#[test]
-pub fn q1() {assert!(q1::soln() == 233168)}
-#[test]
-pub fn q2() {assert!(q2::soln() == 4613732)}
-#[test]
-pub fn q3() {assert!(q3::soln(600851475143) == (6857,6857))}
-#[test]
-pub fn q4() {assert!(q4::soln() == (906609,906609));}
-#[test]
-pub fn q5() {assert!(q5::soln() == 232792560);}
-#[test]
-pub fn q6() {assert!(q6::soln() == 25164150);}
-#[test]
-pub fn q7() {assert!(q7::soln(10001) == 104743);}
-#[test]
-pub fn q8() {assert!(q8::soln() == 23514624000);}
-/*
-#[bench]
-use test::Bencher;
-fn loop_q3(b: &mut Bencher) {
-    b.iter(|| {
-        test::black_box(
-            for _ in 0..5 {
-                q3::largest_prime_factor(600851475143);
-            }
-        )
-    })
-}
-#[bench]
-fn iter_q3(b: &mut Bencher) {
-    b.iter(|| {
-        test::black_box(
-            for _ in 0..5 {
-                q3::largest_prime_factor2(600851475143);
-            }
-        )
-    })
+#[cfg(not(test))]
+fn run(input:usize) -> usize{
+    match input {
+        1 => q1::soln(),
+        2 => q2::soln(),
+        3 => q3::soln(600851475143),
+        4 => q4::soln(),
+        5 => q5::soln(),
+        6 => q6::soln(),
+        7 => q7::soln(10001),
+        8 => q8::soln(),
+        9 => q9::soln(),
+        10 => q10::soln(),
+        _ => 0,
+    }
 }
 
-#[bench]
-fn loop_q4(b: &mut Bencher) {
-    b.iter(|| {
-        test::black_box(
-            for _ in 0..5 {
-                q4::loop_soln();
-            }
-        )
-    })
-}
-
-#[bench]
-fn iter_q4(b: &mut Bencher) {
-    b.iter(|| {
-        test::black_box(
-            for _ in 0..2 {
-                q4::iter_soln();
-            }
-        )
-    })
-}*/

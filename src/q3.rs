@@ -35,10 +35,13 @@ pub fn largest_prime_factor2(input:usize) -> usize {
             .find(|&(div,_)| div == 1).unwrap().1
 }
 
-pub fn soln(num:usize) -> (usize,usize) {
-    (
-        largest_prime_factor(num),
-        largest_prime_factor2(num)
-    )
+pub fn soln(num:usize) -> usize {
+    let a = largest_prime_factor(num);
+    let b = largest_prime_factor2(num);
+    assert!(a == b);
+    a
 }
 
+#[cfg(test)]
+#[test]
+pub fn q3() {assert!(soln(600851475143) == 6857)}

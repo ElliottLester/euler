@@ -21,16 +21,19 @@ fn number() -> &'static str {
      71636269561882670428252483600823257530420752963450"
 }
 
-pub fn soln() -> u64 {
+pub fn soln() -> usize {
     let number = number();
-    let largest:Option<u64> =
+    let largest:Option<usize> =
         (0..(number.len()-13))
         .map(|x|
              number.chars()
              .skip(x)
              .take(13)
-             .map(|x|x.to_digit(10).unwrap() as u64)
+             .map(|x|x.to_digit(10).unwrap() as usize)
              .product())
         .max();
     largest.unwrap()
 }
+#[cfg(test)]
+#[test]
+pub fn q8() {assert!(soln() == 23514624000);}

@@ -17,3 +17,7 @@ pub fn soln() -> usize {
     //check(num);
     num
 }
+
+#[cfg(test)]
+#[test]
+pub fn q5() {assert!(soln() == 232792560);}
