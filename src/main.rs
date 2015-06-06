@@ -18,6 +18,7 @@ mod q7;
 mod q8;
 mod q9;
 mod q10;
+mod q11;
 
 
 #[cfg(not(test))]
@@ -50,6 +51,7 @@ fn run(input:usize) -> usize{
         8 => q8::soln(),
         9 => q9::soln(),
         10 => q10::soln(),
+        11 => q11::soln(),
         _ => 0,
     }
 }
