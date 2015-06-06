@@ -29,7 +29,7 @@ fn main() {
     let arg = env::args().nth(1);
     let target = match arg {
         Some(x) => vec!(x.parse::<usize>().ok().expect("Please enter a number!")),
-        None => (1..11).collect(),
+        None => (1..12).collect(),
     };
     
     for x in target {
