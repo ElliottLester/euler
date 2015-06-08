@@ -3,8 +3,10 @@
 #![feature(convert)]
 #![feature(collections)]
 #![feature(step_by)]
+#![feature(scoped)]
 
 extern crate test;
+extern crate primal;
 
 mod utils;
 
@@ -19,6 +21,9 @@ mod q8;
 mod q9;
 mod q10;
 mod q11;
+mod q12;
+mod q13;
+mod q14;
 
 
 #[cfg(not(test))]
@@ -29,7 +34,7 @@ fn main() {
     let arg = env::args().nth(1);
     let target = match arg {
         Some(x) => vec!(x.parse::<usize>().ok().expect("Please enter a number!")),
-        None => (1..12).collect(),
+        None => (1..15).collect(),
     };
     
     for x in target {
@@ -52,6 +57,9 @@ fn run(input:usize) -> usize{
         9 => q9::soln(),
         10 => q10::soln(),
         11 => q11::soln(),
+        12 => q12::soln(),
+        13 => q13::soln(),
+        14 => q14::soln(),
         _ => 0,
     }
 }

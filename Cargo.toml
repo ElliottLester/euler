@@ -8,7 +8,9 @@ license = "MIT"
 authors = [ "Elliott Lester <lester.elliott@gmail.com>" ]
 keywords = ["Programming", "Euler"]
 
+[dependencies]
+primal = "0.2"
+
 [[bin]]
 name = "euler"
 path = "src/main.rs"
-
