@@ -4,6 +4,7 @@
 #![feature(collections)]
 #![feature(step_by)]
 #![feature(scoped)]
+#![feature(collections_drain)]
 
 extern crate test;
 extern crate primal;

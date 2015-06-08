@@ -38,29 +38,28 @@ pub fn soln() -> usize {
     for i in 0..NTHREADS {
         threads.push(thread::scoped(move || {
             let range = (i*load)+1..(((i+1)*load));
-            let mut num = 0;
-            let mut max = 0;
-            for x in range {
-                let seq = Collatz::new(x as usize).collect::<Vec<usize>>().len();
-                if seq > max {
-                    max = seq;
-                    num = x;
-                }
-            }
-            (num,max)
+            range
+            .map(|x| 
+                 (x,
+                  Collatz::new(x as usize)
+                  .collect::<Vec<usize>>()
+                  .len()
+                 )
+                )
+            .max_by(|x|x.1)
+            .unwrap()
         }));
     }
-    let mut num = 0;
-    let mut max = 0;
 
-    for x in threads {
-        let seq = x.join();
-        if seq.1 > max {
-                    max = seq.1;
-                    num = seq.0;
-                }
-    }
-    num
+    let output = 
+        threads
+        .drain(..)
+        .map(|x| x.join() )
+        .max_by(|x| x.1)
+        .unwrap()
+        .0;
+
+    output
 }
 #[cfg(test)]
 #[test]
