@@ -11,9 +11,9 @@ impl Collatz {
 
 impl Iterator for Collatz {
     type Item = usize;
-    
+
     fn next(&mut self) -> Option<usize> {
-        let next =  
+        let next =
             match self.state {
                 0 => None,
                 1 => None,
@@ -21,7 +21,7 @@ impl Iterator for Collatz {
                     self.state = x/2;
                     Some(x/2)},
                 x => {
-                    self.state = 3*x+1; 
+                    self.state = 3*x+1;
                     Some((3*x)+1)},
             };
         next
@@ -39,7 +39,7 @@ pub fn soln() -> usize {
         threads.push(thread::scoped(move || {
             let range = (i*load)+1..(((i+1)*load));
             range
-            .map(|x| 
+            .map(|x|
                  (x,
                   Collatz::new(x as usize)
                   .collect::<Vec<usize>>()
@@ -51,7 +51,7 @@ pub fn soln() -> usize {
         }));
     }
 
-    let output = 
+    let output =
         threads
         .drain(..)
         .map(|x| x.join() )
